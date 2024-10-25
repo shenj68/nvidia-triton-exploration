@@ -1,0 +1,67 @@
+./server.py 
+I1025 20:16:39.890184 575829 pinned_memory_manager.cc:277] "Pinned memory pool is created at '0x204c00000' with size 268435456"
+I1025 20:16:39.890514 575829 cuda_memory_manager.cc:107] "CUDA memory pool is created on device 0 with size 67108864"
+E1025 20:16:39.906759 575829 server.cc:241] "CudaDriverHelper has not been initialized."
+I1025 20:16:39.908028 575829 server.cc:604] 
++------------------+------+
+| Repository Agent | Path |
++------------------+------+
++------------------+------+
+
+I1025 20:16:39.908205 575829 server.cc:631] 
++---------+------+--------+
+| Backend | Path | Config |
++---------+------+--------+
++---------+------+--------+
+
+I1025 20:16:39.908265 575829 server.cc:674] 
++-------+---------+--------+
+| Model | Version | Status |
++-------+---------+--------+
++-------+---------+--------+
+
+I1025 20:16:39.975909 575829 metrics.cc:877] "Collecting metrics for GPU 0: NVIDIA GeForce RTX 4090 Laptop GPU"
+I1025 20:16:39.978259 575829 metrics.cc:770] "Collecting CPU metrics"
+I1025 20:16:39.978456 575829 tritonserver.cc:2598] 
++----------------------------------+------------------------------------------+
+| Option                           | Value                                    |
++----------------------------------+------------------------------------------+
+| server_id                        | triton                                   |
+| server_version                   | 2.50.0                                   |
+| server_extensions                | classification sequence model_repository |
+|                                  |  model_repository(unload_dependents) sch |
+|                                  | edule_policy model_configuration system_ |
+|                                  | shared_memory cuda_shared_memory binary_ |
+|                                  | tensor_data parameters statistics trace  |
+|                                  | logging                                  |
+| model_repository_path[0]         | /home/shenj68/.cache/pytriton/workspace_ |
+|                                  | asqp1xin/model-store                     |
+| model_control_mode               | MODE_EXPLICIT                            |
+| startup_models_0                 | *                                        |
+| strict_model_config              | 0                                        |
+| model_config_name                |                                          |
+| rate_limit                       | OFF                                      |
+| pinned_memory_pool_byte_size     | 268435456                                |
+| cuda_memory_pool_byte_size{0}    | 67108864                                 |
+| min_supported_compute_capability | 6.0                                      |
+| strict_readiness                 | 1                                        |
+| exit_timeout                     | 30                                       |
+| cache_enabled                    | 0                                        |
++----------------------------------+------------------------------------------+
+
+I1025 20:16:39.983683 575829 grpc_server.cc:2558] "Started GRPCInferenceService at 0.0.0.0:8001"
+I1025 20:16:39.983974 575829 http_server.cc:4704] "Started HTTPService at 0.0.0.0:8000"
+I1025 20:16:40.026279 575829 http_server.cc:362] "Started Metrics Service at 0.0.0.0:8002"
+2024-10-25 16:16:40,292 - INFO - pytriton.triton: Read more about configuring and serving models in documentation: https://triton-inference-server.github.io/pytriton.
+2024-10-25 16:16:40,292 - INFO - pytriton.triton: (Press CTRL+C or use the command `kill -SIGINT 575774` to send a SIGINT signal and quit)
+2024-10-25 16:16:40,292 - INFO - examples.perf_analyzer.server: Loading BART model.
+2024-10-25 16:16:40,297 - INFO - pytriton.client.client: Patch ModelClient http
+E1025 20:16:40.304447 575829 model_repository_manager.cc:470] "Failed to set config modification time: model_config_content_name_ is empty"
+I1025 20:16:40.304882 575829 model_lifecycle.cc:472] "loading: BART:1"
+W1025 20:16:40.981171 575829 metrics.cc:631] "Unable to get power limit for GPU 0. Status:Success, value:0.000000"
+I1025 20:16:41.570875 575829 python_be.cc:1923] "TRITONBACKEND_ModelInstanceInitialize: BART_0_0 (CPU device 0)"
+I1025 20:16:41.922860 575829 model_lifecycle.cc:839] "successfully loaded 'BART'"
+2024-10-25 16:16:41,935 - INFO - examples.perf_analyzer.server: Serving inference
+W1025 20:16:41.993841 575829 metrics.cc:631] "Unable to get power limit for GPU 0. Status:Success, value:0.000000"
+W1025 20:16:42.994581 575829 metrics.cc:631] "Unable to get power limit for GPU 0. Status:Success, value:0.000000"
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
